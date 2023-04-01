@@ -241,12 +241,12 @@ class Mancala_game:
     
 
 
-# print(" \n Hello Welcome to Mancala :) \n ")
-# player1 = Player("Random", "bot1")
-# player2 = Player("Random", "bot2")
+print(" \n Hello Welcome to Mancala :) \n ")
+player1 = Player("Random", "bot1")
+player2 = Player("Random", "bot2")
 
-# mancala_game = Mancala_game(player1, player2)
-# mancala_game.play_game()
+mancala_game = Mancala_game(player1, player2)
+mancala_game.play_game()
 
 
 

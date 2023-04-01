@@ -9,7 +9,7 @@ class Player:
         self.player_type = player_type
         self.player_name = player_name
         self.list_of_moves = []
-        self.alpha = 0.2     
+        self.alpha = 1    
         self.beta = 0
         self.moves_dict = moves_dict
         self.file = "models/mancala_moves_dict_a_75.pickle"

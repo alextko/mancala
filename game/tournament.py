@@ -5,7 +5,7 @@ import os
 
 
 class Tournament:
-    def __init__(self, player1, player2, num_games = 10000):
+    def __init__(self, player1, player2, num_games = 10):
         self.player1 = player1
         self.player2 = player2
         self.num_games  = num_games
@@ -42,7 +42,6 @@ class Tournament:
     def play_tournament(self):
         #check if either player requires the pickle to be loaded
         if self.player1.player_type == "RL_Bot" :
-            # print("loading pickle")
             self.load_pickle()
 
         for i in range(0, self.num_games):

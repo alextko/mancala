@@ -2,8 +2,13 @@
 
 <html lang = "en">
     <head>
-        <link rel="stylesheet" href="/UI/stylesheet.scss">
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/Users/alexreinhart/mancala/UI/stylesheet.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
       </head>
+      <body>
 
       <div class="overlay"></div>
 
@@ -38,29 +43,34 @@
         </div>
       </div>
 
+    </body>
+
     <body> 
-        <h1>Player 1</h1>
+        <h1 class = "player_name">Player 1</h1>
         <table class="styled-table">
-            <tr rowspan="2">0</tr>
+
             <tr>
-              <th>4</th>
-              <th>4</th> 
-              <th>4</th>
-              <th>4</th>
-              <th>4</th> 
-              <th>4</th>
+              <th rowspan="2"><button class="custom-btn1 goal_button">0</button></th>
+              <th><button class="custom-btn b1"><span>4</span></button></th>
+              <th><button class="custom-btn b1"><span>4</span></button></th> 
+              <th><button class="custom-btn b1"><span>4</span></button></th>
+              <th><button class="custom-btn b1"><span>4</span></button></th>
+              <th><button class="custom-btn b1"><span>4</span></button></th> 
+              <th><button class="custom-btn b1"><span>4</span></button></th>
+              <th rowspan="2"><button class="custom-btn1 goal_button">0</button></th>
             </tr>
             <tr>
-                <th>4</th>
-                <th>4</th> 
-                <th>4</th>
-                <th>4</th>
-                <th>4</th> 
-                <th>4</th>
+                <th><button class="custom-btn b1"><span>4</span></button></th>
+                <th><button class="custom-btn b1"><span>4</span></button></th> 
+                <th><button class="custom-btn b1"><span>4</span></button></th>
+                <th><button class="custom-btn b1"><span>4</span></button></th>
+                <th><button class="custom-btn b1"><span>4</span></button></th> 
+                <th><button class="custom-btn b1"><span>4</span></button></th>
+                
             </tr>
-            <tr rowspan="2">0</tr>
+
           </table>
 
-        <h1>Player 2</h1>
+        <h1 class = "player_name">Player 2</h1>
     </body>
 </html>
