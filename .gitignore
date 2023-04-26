@@ -1,1 +1,2 @@
-/game/models/*
+# /backend/models/*
+*.pickle
