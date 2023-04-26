@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang = "en">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="ui.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/stylesheet.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300&display=swap" rel="stylesheet">
+        
+      
+      </head>
+      <body>
+
+      <div class="overlay"></div>
+
+      <div class="text">
+        <div class="wrapper">
+          <div id="M" class="letter">M</div>
+          <div class="shadow">M</div>
+        </div>
+        <div class="wrapper">
+          <div id="A" class="letter">A</div>
+          <div class="shadow">A</div>
+        </div>
+        <div class="wrapper">
+          <div id="N" class="letter">N</div>
+          <div class="shadow">N</div>
+        </div>
+        <div class="wrapper">
+          <div id="C" class="letter">C</div>
+          <div class="shadow">C</div>
+        </div>
+        <div class="wrapper">
+          <div id="A" class="letter">A</div>
+          <div class="shadow">A</div>
+        </div>
+        <div class="wrapper">
+          <div id="L" class="letter">L</div>
+          <div class="shadow">L</div>
+        </div>
+        <div class="wrapper">
+          <div id="A" class="letter">A</div>
+          <div class="shadow">A</div>
+        </div>
+      </div>
+
+    </body>
+
+    <body>
+      <p id = "up_next">
+        <h2 class = "next" name = "next1"></h2>
+        </p>
+    </body>
+
+    <body> 
+        <h1 class = "player_name" name="p1">Player 1</h1>
+        <table class="styled-table">
+
+            <tr>
+              <th rowspan="2"><button class="custom-btn1 goal_button" name = "p1_goal">0</button></th>
+              <th><button class="custom-btn b1" name = "p1_b0"><span>4</span></button></th>
+              <th><button class="custom-btn b1" name = "p1_b1"><span>4</span></button></th> 
+              <th><button class="custom-btn b1" name = "p1_b2"><span>4</span></button></th>
+              <th><button class="custom-btn b1" name = "p1_b3"><span>4</span></button></th>
+              <th><button class="custom-btn b1" name = "p1_b4"><span>4</span></button></th> 
+              <th><button class="custom-btn b1" name = "p1_b5"><span>4</span></button></th>
+              <th rowspan="2"><button class="custom-btn1 goal_button" name = "p2_goal">0</button></th>
+            </tr>
+            <tr>
+                <th><button class="custom-btn b1" name = "p2_b0"><span>4</span></button></th>
+                <th><button class="custom-btn b1" name = "p2_b1"><span>4</span></button></th> 
+                <th><button class="custom-btn b1" name = "p2_b2"><span>4</span></button></th>
+                <th><button class="custom-btn b1" name = "p2_b3"><span>4</span></button></th>
+                <th><button class="custom-btn b1" name = "p2_b4"><span>4</span></button></th> 
+                <th><button class="custom-btn b1" name = "p2_b5"><span>4</span></button></th>
+                
+            </tr>
+
+          </table>
+
+        <h1 class = "player_name" name = "p2">Player 2</h1>
+        <div id="popup">
+          <h1> Thanks for Playing </h1>
+          <h2 id="winner-msg" name = "winner-msg"></h2>
+          <button id="play-again-btn" name = "play-again-btn">Play Again</button>
+        </div>
+        <div id="popup2">
+          <h1> Welcome to Mancala </h1>
+          <p>
+            <h2> Input your name </h2>
+            <input id = "player_1_name" name = "player_1_name"> </input>
+           </p>
+          <p>
+            <label for="opponent_selection">select an opponent type</label>
+            <select id="opponent_selection">
+              <option value="robot">robot</option>
+              <option value="human">human</option>
+            </select>
+          </p>
+          
+          <button id="play" name = "play">Start Game</button>
+        </div>
+    </body>
+</html>
