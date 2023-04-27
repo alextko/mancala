@@ -4,31 +4,71 @@ var winner = null;
 let player_1 = {'player_type': "Normal", 'player_name': 'Player 1'}
 let player_2 = {'player_type': "Smart", 'player_name': 'Smart Robot'}
 let current_player = player_1.player_name;
+let active = false 
 
 document.addEventListener('DOMContentLoaded', () => {
 
 
 // Get the popup and its child elements
 const popup = document.getElementById('popup');
-const popup2 = document.getElementById('popup2');
-const mySelector = document.getElementById('opponent_selection');
-const player_1_name = document.getElementById('player_1_name');
+const RL_popup = document.getElementById('RL_Popup');
+const start_game_window = document.getElementById('login-box');
 
 
 
+
+
+async function show_me_the_pickle() {
+    try{
+        fetch(' http://127.0.0.1:5000/api/load_model', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({"player_1": player_1, "player_2": player_2})
+        })
+        .then(response => {
+            return response.json();
+        })
+        .then(data => {
+            console.log(data); 
+            message = data.message;
+            success = data.success;
+            console.log(success)
+            if (success === true){
+                RL_popup.style.display = 'block';
+            }
+            //if this was succcessful then we can allow people to play against RL BOT
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            console.log("Response status:", error.status);
+        })
+
+    } catch (error) {
+        console.error("Error parsing JSON Response");
+    }
+
+  }
+
+function get_last_player(){
+    if(player_1.player_name === current_player){
+        return player_2
+    } else {
+        return player_1
+    }
+
+}
 
 function update_current_player(){
-    console.log("updating current player")
+    console.log("updating current player to be " + current_player)
     $('[name="next1"]').text("Next turn: " + current_player);
 }
 
-function display_invalid_move(){
-    console.log("invalid move")
-    $('[name="next1"]').text("Invalid move, go again " + current_player);
-}
 
 function new_game_popup(){
-    popup2.style.display = 'block';
+    RL_popup.style.display = 'none';
+    start_game_window.style.display = 'block';
 
 }
 
@@ -47,7 +87,7 @@ function start_game(player_1, player_2){
             return response.json();
         })
         .then(data => {
-            console.log(data); // Output: 'User saved successfully'
+            console.log(data); 
             board = data.board;
             current_player = data.cur_player;
             update_board(board)
@@ -75,7 +115,9 @@ function play_move(move=null){
         player_type = player_2.player_type
         opponent_type = player_1.player_type
     }
-    
+    p_name = current_player
+    current_player = null
+    active = true    
     try{
         fetch(' http://127.0.0.1:5000/api/move', {
             method: 'POST',
@@ -88,15 +130,18 @@ function play_move(move=null){
             return response.json();
         })
         .then(data => {
-            console.log(data); // Output: 'User saved successfully'
+            console.log(data); 
             board = data.board
             winner = data.winner
             current_player = data.cur_player
-            update_board(board)
+            last_move_player = get_last_player()
+            move = data.move
+            update_board(board, move, p_name)
             update_current_player()
             if (winner !== null){
                  end_game_state(winner)
             }; 
+            active = false
 
         })
         .catch(error => {
@@ -109,31 +154,32 @@ function play_move(move=null){
     }
 
 };
-// console.log(player_1.player_name ,"   " ,player_1.player_type)
 
 setInterval(function() {
 
-    if(current_player === player_1.player_name && player_1.player_type === "Smart" && winner === null) {
+    if(active === false && current_player === player_1.player_name && (player_1.player_type === "Smart" || player_1.player_type === "RL") && winner === null) {
+        console.log("p1 is playing again")
         function play_next_move() {
             play_move();
         }
-        setTimeout(play_next_move,1500);
+        setTimeout(play_next_move,10);
     };
-}, 2000);
+}, 3000);
 
 setInterval(function() {
-    if(current_player === player_2.player_name && player_2.player_type === "Smart" && winner === null) {
+    if(active === false && current_player === player_2.player_name && (player_2.player_type === "Smart" || player_2.player_type === "RL") && winner === null) {
+        console.log("p2 is playing again")
         function play_next_move() {
             play_move();
         }
-        setTimeout(play_next_move,1500);
+        setTimeout(play_next_move,10);
     };
-}, 2000);
+}, 3000);
 
 
 
 
-function update_board(board) {
+function update_board(board, move = null, last_player = null) {
 
 
     $('button[name="p1_goal"]').text(board[0][0]);
@@ -154,6 +200,31 @@ function update_board(board) {
     $('button[name="p2_b4"]').text(board[3][4]);
     $('button[name="p2_b5"]').text(board[3][5]);
 
+    if(move != null && last_player != null){
+        console.log(last_player)
+        if (player_1.player_name === last_player) {
+            index = 1;
+            p_ = "p1"
+        }else {
+            index = 3;
+            p_ = "p2"
+        }
+        button_string = p_ + "_b" + String(move);
+
+        function highlight_last_move() {
+            document.querySelector('[name="' + button_string + '"]').focus();
+        }
+        async function fade_last_move_highlight() {
+            document.querySelector('[name="' + button_string + '"]').blur();
+        }
+
+        highlight_last_move()
+        setTimeout(fade_last_move_highlight,500);
+        
+        
+    }
+
+
 
 };
 
@@ -172,6 +243,8 @@ function end_game_state(w){
 
 
 console.log("starting game")
+show_me_the_pickle()
+console.log("loading pick in the background")
 new_game_popup()
 
 $(document).ready(function() {
@@ -251,20 +324,72 @@ $(document).ready(function() {
         start_game(player_1, player_2)
     });
     $("[name = 'play'").click(function(){
-        console.log("starting a game")
-        popup2.style.display = 'none';
-        // Set the correct player names based on inputs
-        player_1.player_name = player_1_name.value
-        if (mySelector.value === "robot"){
-            player_2_name = "Smart Robot"
-            player_2_type = "Smart"
-        } else {
-            player_2_name = "Smart Human"
-            player_2_type = "Normal"
-        }
-        player_2.player_type = player_2_type
-        player_2.player_name = player_2_name
+        const player_1_selector = document.getElementById('player_1_selection');
+        const player_2_selector = document.getElementById('player_2_selection');
+        const player_1_name = document.getElementById('player_1_name');
+        const player_2_name = document.getElementById('player_2_name'); 
 
+        console.log("starting a game")
+        start_game_window.style.display = 'none';
+        // Set the correct player names based on inputs
+
+        if (player_1_selector.value === "human"){
+            player_1.player_type = 'Normal'
+            if (player_1_name.value === "" ){
+                player_1.player_name = "Smart Human 1"
+            } else {
+                player_1.player_name = player_1_name.value
+            }
+        }
+        else {
+            player_1.player_type = "Smart"
+            if (player_1_name.value === "" ){
+                player_1.player_name = "Smart Robot 1"
+            } else {
+                player_1.player_name = player_1_name.value
+            }
+        }
+
+
+        if (player_2_selector.value === "human"){
+            player_2.player_type = 'Normal';
+            if (player_2_name.value === "" ){
+                player_2.player_name = "Smart Human 2"
+            } else {
+                player_2.player_name = player_2_name.value
+            }
+
+        } else {
+            player_2.player_type = "Smart"
+            if (player_2_name.value === "" ){
+                player_2.player_name = "Smart Robot 2"
+            } else {
+                player_2.player_name = player_2_name.value
+            }
+        }
+
+        console.log("starting game")
+        start_game(player_1, player_2)
+    });
+
+    $("[name = 'play_RL'").click(function(){
+        start_game_window.style.display = 'none';
+        RL_popup.style.display = 'none';
+        popup.style.display = 'none';
+
+        console.log("starting a game game with RL bot")
+        if (player_1.player_type === "Normal" ){
+            player_2.player_name = player_1.player_name
+            player_2.player_type = "Normal"
+        } else if (player_2.player_type === "Normal"){
+            //keep player 2 the same
+        } else {
+            player_2.player_name = "Human"
+            player_2.player_type = "Normal"
+        }
+
+        player_1.player_name = "RL Bot"
+        player_1.player_type = "RL"
 
         console.log("starting game")
         start_game(player_1, player_2)

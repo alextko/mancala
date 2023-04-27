@@ -5,7 +5,7 @@ import os
 
 class Player:
 
-    def __init__(self, player_type = "Random", player_name = "Robot", player_side = "top", moves_dict = None, tournament = False, training_mode = False):
+    def __init__(self, player_type = "Random", player_name = "Robot", player_side = "top", moves_dict = None, tournament = False, training_mode = False, file = None):
         self.player_type = player_type
         self.player_name = player_name
         self.player_side = player_side
@@ -22,7 +22,7 @@ class Player:
         self.training_mode = training_mode
         self.tournament = tournament
         self.moves_dict = moves_dict
-        self.file = None
+        self.file = file
         self.message = ""
         self.file_top = "models/RL_model_top_4.pickle"
         self.file_bottom = "models/RL_model_bottom.pickle"

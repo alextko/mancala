@@ -5,13 +5,17 @@ import mancala_scripts
 from flask_cors import CORS, cross_origin
 from mancala import Mancala_game
 from player import Player
+import time
 
 app = Flask(__name__)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-game = None 
+global_game = None 
 game_path = './stored_games/game.pickle'
+
+model_path = "models/RL_model_top_4.pickle"
+model = None
 
 
 @app.route('/api/new_game', methods=['POST']) 
@@ -24,8 +28,10 @@ def new_game():
     player_1 = data["player_1"]
     player_2 = data["player_2"]
 
-    mancala_game, board, cur_player = mancala_scripts.new_game(player_1, player_2)
-    mancala_scripts.save_pickle(game_path, mancala_game)
+    mancala_game, board, cur_player = mancala_scripts.new_game(player_1, player_2, model)
+    global global_game 
+    global_game = mancala_game
+    # mancala_scripts.save_pickle(game_path, mancala_game)
 
     ##TODO need to save the mancala game to the pickle file 
 
@@ -37,6 +43,7 @@ def new_game():
 @app.route('/api/move', methods=['POST'])
 @cross_origin()
 def move():
+    global global_game
     
     data = request.json
     move = data["move"] 
@@ -44,18 +51,47 @@ def move():
 
     if move is None: # convert JS nonetype to python nontype
         move = None
+    tt = time.time()
+    # game = mancala_scripts.load_pickle(game_path)
+    t0 = time.time()
+    mancala_game, board, cur_player, winner, move = mancala_scripts.move(global_game, move, p_type)
+    t1 = time.time()
+    global_game = mancala_game
+    # mancala_scripts.save_pickle(game_path, mancala_game)
+    t2 = time.time()
+    t4 = t1-t0
+    t3 = t2-t1
+    t5 = t0-tt
 
-    game = mancala_scripts.load_pickle(game_path)
-
-    mancala_game, board, cur_player, winner = mancala_scripts.move(game, move, p_type)
-    mancala_scripts.save_pickle(game_path, mancala_game)
+    print("time to make a move: " + str(t4))
+    print("time to save pick: " + str(t3))
+    print("time to load pick: " + str(t5))
 
     if winner:
         response = jsonify({'message': "Made move " + str(move) + ' waiting for move from ' + cur_player.player_name,\
-                            'board': board, 'winner': winner.player_name, 'cur_player': cur_player.player_name})
+                            'board': board, 'winner': winner.player_name, 'cur_player': cur_player.player_name, \
+                            'move': move})
     else:
         response = jsonify({'message': "Made move " + str(move) + ' waiting for move from ' + cur_player.player_name,\
-                            'board': board, 'winner': winner, 'cur_player': cur_player.player_name})
+                            'board': board, 'winner': winner, 'cur_player': cur_player.player_name,\
+                            'move': move})
+    
+
+    return response
+
+
+
+@app.route('/api/load_model', methods=['POST'])
+@cross_origin()
+def load_model():
+    model = mancala_scripts.load_pickle(model_path)
+    if model != None:
+        success = True
+    else:
+        success = False
+
+    response = jsonify({'message': "RL BOT loaded successfully, you may now play",\
+                            'success': success})
 
     return response
 

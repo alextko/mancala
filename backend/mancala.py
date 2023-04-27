@@ -1,5 +1,5 @@
 from player import Player
-
+import time
 
 
 
@@ -18,6 +18,7 @@ class Mancala_game:
         self.set_player_side(self.player2)
         self.tournament = tournament
         self.training_mode = False
+        self.last_move = None
 
     def set_player_side(self, p):
         if  p == self.player1:
@@ -36,7 +37,7 @@ class Mancala_game:
             while not valid_move and not self.is_complete:
                 move = player.generate_move(self.board)         
                 valid_move = self.check_valid_move(player, move)
-                
+        self.last_move = move
         self.update_board(player, move)
 
 
@@ -93,6 +94,7 @@ class Mancala_game:
         current_j = move
         #Player 1 is always on top
         #make the move on the board
+        print("this is the move: " + str(move))
         num_marbles = self.board[current_i][move]
         self.board[current_i][move] = 0
         count = 0
@@ -247,7 +249,7 @@ class Mancala_game:
         if self.repeat_turn != True:
             self.update_cur_player()
 
-        return self.winner, self.cur_player, self.board
+        return self.winner, self.cur_player, self.board, self.last_move
 
 
     def play_game(self):

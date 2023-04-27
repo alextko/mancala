@@ -87,21 +87,39 @@
           <h2 id="winner-msg" name = "winner-msg"></h2>
           <button id="play-again-btn" name = "play-again-btn">Play Again</button>
         </div>
-        <div id="popup2">
-          <h1> Welcome to Mancala </h1>
-          <p>
-            <h2> Input your name </h2>
-            <input id = "player_1_name" name = "player_1_name"> </input>
-           </p>
-          <p>
-            <label for="opponent_selection">select an opponent type</label>
-            <select id="opponent_selection">
+        <div id = "login-box" class="login-box">
+          <h2>Welcome to Mancala</h2>
+          <form id="msform">
+            <div class="user-box">
+              <input type="text" id="player_1_name" name="player_1_name" autocomplete="off" ></input>
+              <label>Player 1 Name</label>
+            </div>
+            <div class="user-box">
+              <label for="player_1_selection">Player 1 Type: </label>
+              <select id="player_1_selection">
               <option value="robot">robot</option>
               <option value="human">human</option>
             </select>
-          </p>
-          
-          <button id="play" name = "play">Start Game</button>
-        </div>
+            </div>
+            <div class="user-box">
+              <input type="text" id="player_2_name" name="player_2_name" autocomplete="off" ></input>
+              <label>Player 2 Name</label>
+            </div>
+            <div class="user-box">
+              <label for="player_2_selection">Player 2 Type: </label>
+              <select id="player_2_selection">
+              <option value="human">human</option>
+              <option value="robot">robot</option>
+            </select>
+            </div>
+            <button id= "play" type="button" name = "play">Start Game</button>
+          </form>
+        
+    </body>
+    <body>
+    </div>
+    <div id="RL_Popup">
+      <button class="custom-btn b3" id="play_RL" name = "play_RL">Play Reinforcement Learning Bot</button>
+    </div>
     </body>
 </html>

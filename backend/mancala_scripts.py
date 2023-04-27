@@ -12,7 +12,7 @@ def save_pickle(file, game):
 def load_pickle (file):
     if os.path.getsize(file) > 0:
         with open(file, 'rb') as handle:
-            print("Loading pickle file ...")
+            print("Loading pickle file ... " + file)
             v = pickle.load(handle)
     return v
 
@@ -29,8 +29,8 @@ def check_pickle_size(file):
 
 
 
-def new_game(player_1, player_2):
-    player1 = Player(player_1["player_type"], player_1["player_name"])
+def new_game(player_1, player_2, model= None):
+    player1 = Player(player_1["player_type"], player_1["player_name"], moves_dict= model)
     player2 = Player(player_2["player_type"], player_2["player_name"])
 
     mancala_game = Mancala_game(player1, player2)
@@ -39,12 +39,8 @@ def new_game(player_1, player_2):
     return  mancala_game, board, cur_player
 
 def move(mancala_game, move=None, player_type=None):
-    winner, cur_player, board = mancala_game.app_make_move(move, player_type)
+    winner, cur_player, board, move = mancala_game.app_make_move(move, player_type)
 
-    return mancala_game, board, cur_player, winner
+    return mancala_game, board, cur_player, winner, move
      
      
-
-
-# pickle_file =  "models/RL_model_top.pickle"
-# check_pickle_size(pickle_file)
