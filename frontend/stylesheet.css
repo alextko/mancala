@@ -11,10 +11,10 @@
 
 .text {
   font-family: "Yanone Kaffeesatz", sans-serif;
-  font-size: 60px;
+  font-size: 65px;
   display: flex;
   position: absolute;
-  top: 4vh;
+  top: 1vh;
   left: 50%;
   transform: translateX(-50%);
   user-select: none;
@@ -30,7 +30,7 @@
 }
 .text .wrapper .shadow {
   transform: scale(1, -1);
-  color: #dddddd;
+  color: #f0f0f0;
   transition: ease-in 5s, ease-out 5s;
 }
 .text .wrapper:hover .letter {
@@ -45,7 +45,7 @@ body {
   background-color: rgb(255, 255, 255);
   margin-left: auto;
   margin-right: auto;
-  margin-top: 250px;
+  margin-top: 200px;
   margin-bottom: 10px;
 }
 
@@ -404,282 +404,6 @@ button {
   transition: all 500ms ease;
 }
 
-#popup {
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  font-size: 20px;
-  display: none;
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 300px;
-  text-align: center;
-  background-image: url("wood.jpg");
-  font-family: sans-serif;
-  border-radius:10px;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-}
-#popup h1 {
-  padding-top: 20px;
-  text-align: center
-}
-#popup h2 {
-  padding-top: 20px;
-  text-align: center;
-  font-weight: 200
-}
-
-#popup button {
-  background-image: url("wood.jpg");
-  margin-top: 20px;
-  color: #000000;
-  border-radius: 10px;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-#popup button, #popup h2 {
-  font-size: 20px;
-  font-family: sans-serif;
-  padding: 10px 20px;
-}
-
-#popup button:hover, #popup button:focus {
-  background-color: #ddd;
-  cursor: pointer;
-}
-
-
-
-#popup button:before,
-#popup button:after {
-  position: absolute;
-  content: "";
-  height: 0%;
-  width: 1px;
-  box-shadow: -1px -1px 20px 0px rgb(255, 255, 255), -4px -4px 5px 0px rgb(255, 255, 255), 7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-#popup button:before {
-  right: 0;
-  top: 0;
-  transition: all 500ms ease;
-}
-
-#popup button:after {
-  left: 0;
-  bottom: 0;
-  transition: all 500ms ease;
-}
-
-#popup button:hover {
-  background: rgba(119, 119, 119, 0.2);
-  color: #000000;
-  box-shadow: none;
-}
-
-#popup button:hover:before {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-#popup button:hover:after {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-#popup button span:before,
-#popup button span:after {
-  position: absolute;
-  content: "";
-  box-shadow: -1px -1px 20px 0px rgb(255, 255, 255), -4px -4px 5px 0px rgb(255, 255, 255), 7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-#popup button span:before {
-  left: 0;
-  top: 0;
-  width: 0%;
-  height: 0.5px;
-  transition: all 500ms ease;
-}
-
-#popup button span:after {
-  right: 0;
-  bottom: 0;
-  width: 0%;
-  height: 0.5px;
-  transition: all 500ms ease;
-}
-
-#popup button span:hover:before {
-  width: 100%;
-}
-
-#popup button span:hover:after {
-  width: 100%;
-}
-
-#popup2 {
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  font-size: 20px;
-  display: none;
-  position: fixed;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  height: 350px;
-  text-align: center;
-  background-image: url("wood.jpg");
-  font-family: sans-serif;
-  border-radius:10px;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-}
-#popup2 h1 {
-  padding-top: 20px;
-  text-align: center
-}
-#popup2 h2 {
-  padding-top: 20px;
-  text-align: center;
-  font-weight: 200
-}
-
-#popup2 input {
-  width: 50%;
-  padding: 12px 20px;
-  margin: 4px 0;
-  box-sizing: border-box;
-  text-align: center;
-  font-family: "Lato", sans-serif;
-  font-weight: 200;
-  border-radius:10px
-  
-}
-#popup2 select {
-  font-family: "Lato", sans-serif;
-  padding-top: 10px;
-  padding-top: 10px;
-  text-align: center;
-  border-radius:10px;
-  font-weight: 200
-}
-
-#popup2 button {
-  background-image: url("wood.jpg");
-  margin-top: 20px;
-  color: #000000;
-  border-radius: 10px;
-  font-family: "Lato", sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-  box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, 0.1), 4px 4px 5px 0px rgba(0, 0, 0, 0.1);
-  outline: none;
-}
-
-#popup2 button, #popup2 h2 {
-  font-size: 20px;
-  font-family: sans-serif;
-  padding: 10px 20px;
-}
-
-#popup2 button:hover, #popup2 button:focus {
-  background-color: #ddd;
-  cursor: pointer;
-}
-
-
-
-#popup2 button:before,
-#popup2 button:after {
-  position: absolute;
-  content: "";
-  height: 0%;
-  width: 1px;
-  box-shadow: -1px -1px 20px 0px rgb(255, 255, 255), -4px -4px 5px 0px rgb(255, 255, 255), 7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-#popup2 button:before {
-  right: 0;
-  top: 0;
-  transition: all 500ms ease;
-}
-
-#popup2 button:after {
-  left: 0;
-  bottom: 0;
-  transition: all 500ms ease;
-}
-
-#popup2 button:hover {
-  background: rgba(119, 119, 119, 0.2);
-  color: #000000;
-  box-shadow: none;
-}
-
-#popup2 button:hover:before {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-#popup2 button:hover:after {
-  transition: all 500ms ease;
-  height: 100%;
-}
-
-#popup2 button span:before,
-#popup2 button span:after {
-  position: absolute;
-  content: "";
-  box-shadow: -1px -1px 20px 0px rgb(255, 255, 255), -4px -4px 5px 0px rgb(255, 255, 255), 7px 7px 20px 0px rgba(0, 0, 0, 0.4), 4px 4px 5px 0px rgba(0, 0, 0, 0.3);
-}
-
-#popup2 button span:before {
-  left: 0;
-  top: 0;
-  width: 0%;
-  height: 0.5px;
-  transition: all 500ms ease;
-}
-
-#popup2 button span:after {
-  right: 0;
-  bottom: 0;
-  width: 0%;
-  height: 0.5px;
-  transition: all 500ms ease;
-}
-
-#popup2 button span:hover:before {
-  width: 100%;
-}
-
-#popup2 button span:hover:after {
-  width: 100%;
-}
-/* html {
-  height: 100%;
-}
-body {
-  margin:0;
-  padding:0;
-  font-family: sans-serif;
-  background: linear-gradient(#141e30, #243b55);
-} */
 
 .login-box {
   position: absolute;
@@ -695,11 +419,52 @@ body {
   font-family: "Yanone Kaffeesatz", sans-serif;
   
 }
-
 .login-box h2 {
   margin: 0 0 30px;
   padding: 0;
-  color: #fff;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.login-box button {
+  margin-left: auto;
+  position: relative;
+  display: inline-block;
+  padding: 20px 40px;
+  background-color: transparent;
+  color: #23DB47;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 30px;
+  letter-spacing: 3px;
+  border: none
+}
+
+.login-box h3 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 3px;
+}
+#intro-msg {
+  font-size: 32px;
+  margin-bottom: 40px;
+  /* margin: 0 0 30px; */
+  padding: 0;
+  color: #ffffff;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+#winner-msg {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #23DB47;
   text-align: center;
   letter-spacing: 3px;
 }
@@ -734,17 +499,18 @@ body {
 .login-box .user-box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #ffdc7b;
+  color: #23DB47;
   font-size: 12px;
 }
 
 .login-box form button {
-  margin-left: auto;
+  
+  margin-left: 75px;
   position: relative;
   display: inline-block;
   padding: 10px 20px;
   background-color: transparent;
-  color: #ffdc7b;
+  color: #23DB47;
   font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;
@@ -755,6 +521,7 @@ body {
   border: none
 }
 
+
 .login-box select {
   width: 40%;
   padding: 6px 10px;
@@ -764,32 +531,32 @@ body {
   margin-bottom: 30px;
   font-weight: 200;
   background-color: transparent;
-  color: #ffdc7b;
+  color: #23DB47;
   border-radius: 4px;
   letter-spacing: 2px;
 }
 
 .login-box button:hover {
-  background: #ffdc7b;
+  background: #23DB47;
   color: #fff;
   border-radius: 5px;
-  box-shadow: 0 0 5px #ffdc7b,
-              0 0 25px #ffdc7b,
-              0 0 50px #ffdc7b,
-              0 0 100px #ffdc7b;
+  box-shadow: 0 0 5px #23DB47,
+              0 0 25px #23DB47,
+              0 0 50px #23DB47,
+              0 0 100px #23DB47;
 }
 
-.login-box button span {
+#play span {
   position: absolute;
-  display: block;
+  display: inline-block;
 }
 
-.login-box button span:nth-child(1) {
+#play span:nth-child(1) {
   top: 0;
   left: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #ffdc7b);
+  background: linear-gradient(90deg, transparent, #23DB47);
   animation: btn-anim1 1s linear infinite;
 }
 
@@ -802,12 +569,12 @@ body {
   }
 }
 
-.login-box button span:nth-child(2) {
+#play span:nth-child(2) {
   top: -100%;
   right: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(180deg, transparent, #ffdc7b);
+  background: linear-gradient(180deg, transparent, #23DB47);
   animation: btn-anim2 1s linear infinite;
   animation-delay: .25s
 }
@@ -821,12 +588,12 @@ body {
   }
 }
 
-.login-box button span:nth-child(3) {
+#play span:nth-child(3) {
   bottom: 0;
   right: -100%;
   width: 100%;
   height: 2px;
-  background: linear-gradient(270deg, transparent, #ffdc7b);
+  background: linear-gradient(270deg, transparent, #23DB47);
   animation: btn-anim3 1s linear infinite;
   animation-delay: .5s
 }
@@ -840,12 +607,12 @@ body {
   }
 }
 
-.login-box button span:nth-child(4) {
+#play span:nth-child(4) {
   bottom: -100%;
   left: 0;
   width: 2px;
   height: 100%;
-  background: linear-gradient(360deg, transparent, #ffdc7b);
+  background: linear-gradient(360deg, transparent, #23DB47);
   animation: btn-anim4 1s linear infinite;
   animation-delay: .75s
 }
@@ -859,3 +626,117 @@ body {
   }
 }
 
+
+
+#RL_Popup {
+  text-align: center;
+}
+
+#play_RL {
+  display: inline-block;
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  background: transparent;
+  color:  linear-gradient(#141e30, #243b55);
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 75px;
+  letter-spacing: 3px;
+  border-radius: 10px;
+  border-color:  #141e30;
+}
+
+#play_RL:hover {
+  border-color:  transparent;
+  background: #23DB47;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #23DB47,
+              0 0 25px #23DB47,
+              0 0 50px #23DB47,
+              0 0 100px #23DB47;
+}
+
+#play_RL span {
+  position: absolute;
+  display: block;
+}
+
+#play_RL span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #23DB47);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+#play_RL span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #23DB47);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+#play_RL span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #23DB47);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+#play_RL span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #23DB47);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}

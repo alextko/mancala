@@ -14,6 +14,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 global_game = None 
 game_path = './stored_games/game.pickle'
 
+# model_path = "models/nd1.pickle"
 model_path = "models/RL_model_top_4.pickle"
 model = None
 
@@ -51,21 +52,10 @@ def move():
 
     if move is None: # convert JS nonetype to python nontype
         move = None
-    tt = time.time()
     # game = mancala_scripts.load_pickle(game_path)
-    t0 = time.time()
     mancala_game, board, cur_player, winner, move = mancala_scripts.move(global_game, move, p_type)
-    t1 = time.time()
     global_game = mancala_game
     # mancala_scripts.save_pickle(game_path, mancala_game)
-    t2 = time.time()
-    t4 = t1-t0
-    t3 = t2-t1
-    t5 = t0-tt
-
-    print("time to make a move: " + str(t4))
-    print("time to save pick: " + str(t3))
-    print("time to load pick: " + str(t5))
 
     if winner:
         response = jsonify({'message': "Made move " + str(move) + ' waiting for move from ' + cur_player.player_name,\

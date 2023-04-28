@@ -10,10 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Get the popup and its child elements
-const popup = document.getElementById('popup');
+const popup = document.getElementById('popup3');
 const RL_popup = document.getElementById('RL_Popup');
 const start_game_window = document.getElementById('login-box');
-
 
 
 
@@ -34,7 +33,7 @@ async function show_me_the_pickle() {
             console.log(data); 
             message = data.message;
             success = data.success;
-            console.log(success)
+
             if (success === true){
                 RL_popup.style.display = 'block';
             }
@@ -63,6 +62,16 @@ function get_last_player(){
 function update_current_player(){
     console.log("updating current player to be " + current_player)
     $('[name="next1"]').text("Next turn: " + current_player);
+    if (current_player === player_1.player_name) {
+        console.log("trying to change the colors")
+        document.getElementById("p1_name").style.color = "#23DB47";
+        document.getElementById("p2_name").style.color = "black";
+    } else {
+        document.getElementById("p2_name").style.color = "#23DB47";
+        document.getElementById("p1_name").style.color = "black";
+    }
+    
+    // $('[name="next1"]').text("Next turn: " + current_player);
 }
 
 
@@ -92,6 +101,7 @@ function start_game(player_1, player_2){
             current_player = data.cur_player;
             update_board(board)
             update_current_player()
+            winner = null
         })
         .catch(error => {
             console.error("Error fetching data:", error);
@@ -162,7 +172,7 @@ setInterval(function() {
         function play_next_move() {
             play_move();
         }
-        setTimeout(play_next_move,10);
+        setTimeout(play_next_move,50);
     };
 }, 3000);
 
@@ -172,7 +182,7 @@ setInterval(function() {
         function play_next_move() {
             play_move();
         }
-        setTimeout(play_next_move,10);
+        setTimeout(play_next_move,50);
     };
 }, 3000);
 
@@ -201,7 +211,6 @@ function update_board(board, move = null, last_player = null) {
     $('button[name="p2_b5"]').text(board[3][5]);
 
     if(move != null && last_player != null){
-        console.log(last_player)
         if (player_1.player_name === last_player) {
             index = 1;
             p_ = "p1"
@@ -238,6 +247,8 @@ function end_game_state(w){
     console.log(w + " is the winner!")
     $("[name = 'winner-msg']").text(`${w} wins!`);
     popup.style.display = 'block';
+    RL_popup.style.display = 'block';
+    start_game_window.style.display = 'none'
 
 };
 
@@ -246,6 +257,7 @@ console.log("starting game")
 show_me_the_pickle()
 console.log("loading pick in the background")
 new_game_popup()
+popup.style.display = 'none'
 
 $(document).ready(function() {
     console.log("document ready")
@@ -319,6 +331,7 @@ $(document).ready(function() {
     $("[name = 'play-again-btn'").click(function(){
         console.log("play again")
         popup.style.display = 'none';
+        RL_popup.style.display = 'block';
         // Call a function to reset the game
         console.log("starting game")
         start_game(player_1, player_2)
