@@ -1,2 +1,4 @@
-/backend/models/*
-*.pickle
+/backend/models/nd1.pickle
+/backend/models/trained_pickle.pickle
+/backend/models/transformed.pickle
+

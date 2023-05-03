@@ -1,11 +1,19 @@
-### REPO Overview ###
+# REPO Overview #
 This repo contains a Manacala game as well as a fun UI to play on. There is a readme in the Front end & backend folder to get the bot setup on your local computer - howver unless you train your own model you with my scripts you will not be able to play against RL bot (The models are too large to share without paying)
 
+
+------------------
 ## Tech Stack: ##
-Front End: HTML/CSS/JS
-Back End: Python/Flask
-ML Models: Saved as pickle files 
-Model exploration: Juyter notebooks 
+- Front End: HTML/CSS/JS 
+- Back End: Python/Flask
+- ML Models: Saved as pickle files 
+- Model exploration: Juyter notebooks 
+
+
+
+
+
+
 
 ## Next Steps: ##
 1. Use Tensor flow to train a deep learning bot ( that would take up less space than the current Qlearning bot so i would be able to upload that)
